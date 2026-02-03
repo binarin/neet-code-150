@@ -48,9 +48,6 @@ func isMatch(s string, p string) bool {
 		}
 		char_p := p[p_pos]
 		if is_star_pattern() {
-			if char_p == '.' {
-				return true // .* always matches up to the end of the string
-			}
 			if !consume(char_p, 0, math.MaxInt, &s_pos) {
 				return false
 			}
