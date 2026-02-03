@@ -3,8 +3,8 @@ package main
 import "fmt"
 
 type ListNode struct {
-    Val int
-    Next *ListNode
+	Val  int
+	Next *ListNode
 }
 
 func ln(val int, next *ListNode) *ListNode {
