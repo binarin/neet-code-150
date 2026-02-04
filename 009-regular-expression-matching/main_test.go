@@ -7,7 +7,10 @@ import (
 )
 
 func TestIsMatch(t *testing.T) {
+	assert.Equal(t, true, isMatch("a", "ab*"))
+	assert.Equal(t, false, isMatch("aaa", "ab*a"))
 	assert.Equal(t, false, isMatch("aa", "a"))
+	assert.Equal(t, true, isMatch("aa", "aa"))
 	assert.Equal(t, true, isMatch("aa", "a*"))
 	assert.Equal(t, true, isMatch("ab", ".*"))
 	assert.Equal(t, false, isMatch("ab", ".*c"))

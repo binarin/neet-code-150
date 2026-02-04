@@ -6,10 +6,51 @@ import (
 )
 
 func main() {
-	fmt.Println(isMatch("aa", "a"))
+	fmt.Println(isMatch("bbbba", ".*a*a"))
 }
 
 func isMatch(s string, p string) bool {
+	if len(s) == 0 && len(p) == 0 {
+		return true
+	}
+
+	is_star_pattern := len(p) > 1 && p[1] == '*'
+	if is_star_pattern {
+		max_span := 0
+		if p[0] == '.' {
+			max_span = len(s)
+		} else {
+			for max_span < len(s) {
+				if s[max_span] == p[0] {
+					max_span++
+				} else {
+					break
+				}
+			}
+		}
+		if max_span == 0 {
+			return isMatch(s[0:], p[2:])
+		}
+		for split_pos := max_span; split_pos >= 0; split_pos-- {
+			if isMatch(s[split_pos:], p[2:]) {
+				return true
+			}
+		}
+		return false
+	}
+
+	if len(p) == 0 || len(s) == 0 {
+		return false
+	}
+
+	if p[0] == '.' || p[0] == s[0] {
+		return isMatch(s[1:], p[1:])
+	}
+
+	return false
+}
+
+func isMatchNonGreedy(s string, p string) bool {
 	// let's start greedy without backtracking
 	s_pos := 0
 	p_pos := 0
