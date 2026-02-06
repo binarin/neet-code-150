@@ -10,7 +10,27 @@ func main() {
 }
 
 func trap(height []int) int {
-	return 0
+	if len(height) < 3 {
+		return 0
+	}
+	max_from_left := make([]int, len(height))
+	max_from_right := make([]int, len(height))
+	for i, so_far := 0, 0; i < len(max_from_left); i++ {
+		max_from_left[i] = so_far
+		so_far = max(so_far, height[i])
+	}
+	for i, so_far := len(max_from_right)-1, 0; i >= 0; i-- {
+		max_from_right[i] = so_far
+		so_far = max(so_far, height[i])
+	}
+	result := 0
+	for i := 1; i < len(height)-1; i++ {
+		fill_level := min(max_from_left[i], max_from_right[i])
+		if height[i] < fill_level {
+			result += fill_level - height[i]
+		}
+	}
+	return result
 }
 
 func trapBf(height []int) int {
