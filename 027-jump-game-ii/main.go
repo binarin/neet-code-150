@@ -7,10 +7,30 @@ import (
 )
 
 func main() {
-	fmt.Println(jump([]int{2, 3, 1, 1, 4}))
+	fmt.Println(jump([]int{1, 3, 4}))
 }
 
 func jump(nums []int) int {
+	var bests []int = slices.Repeat([]int{math.MaxInt}, len(nums))
+	bests[0] = 0
+	for i := 0; i < len(nums)-1; i++ {
+		if bests[i] == math.MaxInt {
+			return -1
+		}
+		for j := 1; j <= nums[i]; j++ {
+			if i+j >= len(nums) {
+				break
+			}
+			bests[i+j] = min(bests[i+j], bests[i]+1)
+		}
+	}
+	if bests[len(bests)-1] == math.MaxInt {
+		return -1
+	}
+	return bests[len(bests)-1]
+}
+
+func jumpBf(nums []int) int {
 	var bests []int = slices.Repeat([]int{math.MaxInt}, len(nums))
 
 	var recur func(int, int)
@@ -32,5 +52,8 @@ func jump(nums []int) int {
 	}
 	recur(0, 0)
 
+	if bests[len(bests)-1] == math.MaxInt {
+		return -1
+	}
 	return bests[len(nums)-1]
 }
