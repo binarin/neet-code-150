@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"strings"
+	"slices"
 )
 
 func main() {
@@ -15,60 +14,71 @@ func main() {
 	}
 }
 
+type Board struct {
+	N     int
+	Cells []byte
+}
+
+func (b Board) ToSolution() []string {
+	result := make([]string, 0, b.N)
+	for row := range b.N {
+		bytes := slices.Clone(b.Cells[row*b.N : (row+1)*b.N])
+		for i, b := range bytes {
+			if b == 'X' {
+				bytes[i] = '.'
+			}
+		}
+		result = append(result, string(bytes))
+	}
+	return result
+}
+
+func (b Board) At(x, y int) byte {
+	return b.Cells[y*b.N+x]
+}
+
+func (b Board) Put(x, y int, val byte) {
+	b.Cells[y*b.N+x] = val
+}
+
+func newBoard(n int) Board {
+	return Board{N: n, Cells: slices.Repeat([]byte{'.'}, n*n)}
+}
+
+func (b *Board) Clone() Board {
+	cs := slices.Clone(b.Cells)
+	return Board{N: b.N, Cells: cs}
+}
+
 func solveNQueens(n int) [][]string {
-	if n == 0 {
-		log.Fatal("n == 0")
-	}
-	if n == 1 {
-		return [][]string{{"Q"}}
-	}
-
 	var result [][]string
-	sub_solutions := solveNQueens(n - 1)
-	// sub_solutions: (n-1)x(n-1)
-	// 0 <= insert_at <= n - 1
-	// 0 <= insert_at < n: OK!
-	for insert_at := range n {
-	next_ss:
-		for _, ss := range sub_solutions {
-			var sol []string
-			for i := range n {
-				if i == insert_at {
-					sol = append(sol, "Q"+strings.Repeat(".", n-1))
-					continue
-				}
 
-				sub_i := i
-				if i > insert_at {
-					sub_i--
-				}
-
-				if sub_i >= n-1 {
-					continue
-				}
-
-				sol = append(sol, "."+ss[sub_i])
+	var recur func(int, Board)
+	recur = func(col int, b Board) {
+		if col == n {
+			result = append(result, b.ToSolution())
+			return
+		}
+		for row := range n {
+			if b.At(col, row) != '.' {
+				continue
 			}
-
-			for i := 1; i < n; i++ {
-				if i == insert_at {
-					continue
+			nb := b.Clone()
+			for dx, dy := 1, 1; col+dx < n; dx, dy = dx+1, dy+1 {
+				nb.Put(col+dx, row, 'X')
+				if row-dy >= 0 && col+dx < n {
+					nb.Put(col+dx, row-dy, 'X')
 				}
-
-				var x int
-				if i < insert_at {
-					x = insert_at - i
-				} else {
-					x = i - insert_at
-				}
-				if sol[i][x] == 'Q' {
-					continue next_ss
+				if row+dx < n && col+dy < n {
+					nb.Put(col+dx, row+dy, 'X')
 				}
 			}
-
-			result = append(result, sol)
+			nb.Put(col, row, 'Q')
+			recur(col+1, nb)
 		}
 	}
+
+	recur(0, newBoard(n))
 
 	return result
 }
