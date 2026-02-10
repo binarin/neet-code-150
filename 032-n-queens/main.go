@@ -29,7 +29,7 @@ func solveNQueens(n int) [][]string {
 	// 0 <= insert_at <= n - 1
 	// 0 <= insert_at < n: OK!
 	for insert_at := range n {
-	sub_sols:
+	next_ss:
 		for _, ss := range sub_solutions {
 			var sol []string
 			for i := range n {
@@ -47,23 +47,23 @@ func solveNQueens(n int) [][]string {
 					continue
 				}
 
-				if n >= 3 {
-					if i < insert_at {
-						x := insert_at - i - 1
-						if ss[sub_i][x] == 'Q' {
-							continue sub_sols
-						}
-					}
+				sol = append(sol, "."+ss[sub_i])
+			}
 
-					if i > insert_at {
-						x := i - insert_at - 1
-						if ss[sub_i][x] == 'Q' {
-							continue sub_sols
-						}
-					}
+			for i := 1; i < n; i++ {
+				if i == insert_at {
+					continue
 				}
 
-				sol = append(sol, "."+ss[sub_i])
+				var x int
+				if i < insert_at {
+					x = insert_at - i
+				} else {
+					x = i - insert_at
+				}
+				if sol[i][x] == 'Q' {
+					continue next_ss
+				}
 			}
 
 			result = append(result, sol)
