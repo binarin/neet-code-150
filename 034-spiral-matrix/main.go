@@ -18,65 +18,59 @@ const (
 )
 
 func spiralOrder(matrix [][]int) []int {
-	m := len(matrix)
-	n := len(matrix[0])
-	if m == 0 || n == 0 {
-		return nil
-	}
-	if m == 1 {
-		return matrix[0]
-	}
-	if n == 1 {
-		result := make([]int, 0, m)
-		for y := range matrix {
-			result = append(result, matrix[y][0])
-		}
-		return result
-	}
-	x := 0
-	y := 0
-	hspan := n - 1
-	vspan := m - 1
-	result := []int{}
-	used := 0
-	total := n * m
+	height := len(matrix)
+	width := len(matrix[0])
+
+	left, top := 0, 0
+	right, bottom := width-1, height-1
+	used, total := 0, width*height
+	result := make([]int, 0, total)
+
 	for {
-		for range hspan {
+		x, y := left, top
+		for x <= right {
 			result = append(result, matrix[y][x])
 			x++
 			used++
 		}
+		top++
 		if used == total {
 			break
 		}
-		for range vspan {
+
+		x, y = right, top
+		for y <= bottom {
 			result = append(result, matrix[y][x])
 			y++
 			used++
 		}
+		right--
 		if used == total {
 			break
 		}
-		for range hspan {
+
+		x, y = right, bottom
+		for x >= left {
 			result = append(result, matrix[y][x])
 			x--
 			used++
 		}
+		bottom--
 		if used == total {
 			break
 		}
-		for range vspan {
+
+		x, y = left, bottom
+		for y >= top {
 			result = append(result, matrix[y][x])
 			y--
 			used++
 		}
+		left++
 		if used == total {
 			break
 		}
-		x++
-		y++
-		hspan--
-		vspan--
 	}
+
 	return result
 }
