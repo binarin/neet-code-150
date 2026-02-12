@@ -50,6 +50,13 @@ func (t *TreeNode) GoString() string {
 	return fmt.Sprintf("(%d %s %s)", t.Val, t.Left.GoString(), t.Right.GoString())
 }
 
+func treeDepth(n *TreeNode) int {
+	if n == nil {
+		return 0
+	}
+	return 1 + max(treeDepth(n.Left), treeDepth(n.Right))
+}
+
 func isSameTree(n1 *TreeNode, n2 *TreeNode) bool {
 	if n1 == nil && n2 == nil {
 		return true
@@ -64,9 +71,28 @@ func isSameTree(n1 *TreeNode, n2 *TreeNode) bool {
 }
 
 func isSubtree(root *TreeNode, subRoot *TreeNode) bool {
-	fmt.Println(root.GoString())
 	if root == nil {
 		return false
 	}
-	return isSameTree(root, subRoot) || isSubtree(root.Left, subRoot) || isSubtree(root.Right, subRoot)
+	subDepth := treeDepth(subRoot)
+
+	var recur func(*TreeNode) (bool, int)
+	recur = func(n *TreeNode) (bool, int) {
+		if n == nil {
+			return false, 0
+		}
+		found_l, depth_l := recur(n.Left)
+		found_r, depth_r := recur(n.Right)
+		if found_l || found_r {
+			return true, 0
+		}
+		cur_depth := 1 + max(depth_l, depth_r)
+		if cur_depth == subDepth && isSameTree(n, subRoot) {
+			return true, 0
+		}
+		return false, cur_depth
+	}
+
+	result, _ := recur(root)
+	return result
 }
