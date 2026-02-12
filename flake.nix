@@ -19,6 +19,7 @@
             delve
             golangci-lint
             gotools
+            graphviz
          ];
         };
       };
