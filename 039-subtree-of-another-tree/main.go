@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"strings"
 )
 
 const null = math.MinInt
@@ -43,11 +44,15 @@ func buildTree(vals []int) *TreeNode {
 	return root
 }
 
-func (t *TreeNode) GoString() string {
+func TreeString(t *TreeNode) string {
 	if t == nil {
 		return "nil"
 	}
-	return fmt.Sprintf("(%d %s %s)", t.Val, t.Left.GoString(), t.Right.GoString())
+	return fmt.Sprintf("(%d %s %s)", t.Val, TreeString(t.Left), TreeString(t.Right))
+}
+
+func isSubtree(root *TreeNode, subRoot *TreeNode) bool {
+	return strings.Contains(TreeString(root), TreeString(subRoot))
 }
 
 func treeDepth(n *TreeNode) int {
@@ -70,7 +75,7 @@ func isSameTree(n1 *TreeNode, n2 *TreeNode) bool {
 	return isSameTree(n1.Left, n2.Left) && isSameTree(n1.Right, n2.Right)
 }
 
-func isSubtree(root *TreeNode, subRoot *TreeNode) bool {
+func isSubtreeBf(root *TreeNode, subRoot *TreeNode) bool {
 	if root == nil {
 		return false
 	}
