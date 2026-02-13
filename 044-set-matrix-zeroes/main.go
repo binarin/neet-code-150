@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	matrix := [][]int{{1, 1, 1}, {1, 0, 1}, {1, 1, 1}}
+	matrix := [][]int{{0}, {0}}
 	setZeroes(matrix)
 	fmt.Println(matrix)
 }
@@ -14,23 +14,46 @@ func setZeroes(matrix [][]int) {
 	width := len(matrix[0])
 	height := len(matrix)
 
-	flush_rows := make([]bool, height)
-	flush_cols := make([]bool, width)
+	var clear_top, clear_left bool
+	for y := range height {
+		if matrix[y][0] == 0 {
+			clear_left = true
+			break
+		}
+	}
+	for x := range width {
+		if matrix[0][x] == 0 {
+			clear_top = true
+			break
+		}
+	}
 
-	for y := range matrix {
-		for x := range matrix[0] {
+	for y := 1; y < height; y++ {
+		for x := 1; x < width; x++ {
 			if matrix[y][x] == 0 {
-				flush_rows[y] = true
-				flush_cols[x] = true
+				matrix[0][x] = 0
+				matrix[y][0] = 0
 			}
 		}
 	}
 
-	for y := range matrix {
-		for x := range matrix[0] {
-			if flush_rows[y] || flush_cols[x] {
+	for y := 1; y < height; y++ {
+		for x := 1; x < width; x++ {
+			if matrix[0][x] == 0 || matrix[y][0] == 0 {
 				matrix[y][x] = 0
 			}
 		}
 	}
+	if clear_top {
+		for x := range width {
+			matrix[0][x] = 0
+		}
+	}
+
+	if clear_left {
+		for y := range height {
+			matrix[y][0] = 0
+		}
+	}
+
 }
