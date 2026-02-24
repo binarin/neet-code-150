@@ -10,4 +10,5 @@ func TestIsInterleave(t *testing.T) {
 	assert.Equal(t, true, isInterleave("aabcc", "dbbca", "aadbbcbcac"))
 	assert.Equal(t, false, isInterleave("aabcc", "dbbca", "aadbbbaccc"))
 	assert.Equal(t, true, isInterleave("", "", ""))
+	assert.Equal(t, true, isInterleave("ab", "bc", "babc"))
 }
