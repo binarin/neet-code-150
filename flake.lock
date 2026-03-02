@@ -29,7 +29,6 @@
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-25.11",
         "repo": "nixpkgs",
         "type": "github"
       }
