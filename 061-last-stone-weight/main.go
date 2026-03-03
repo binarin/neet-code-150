@@ -1,16 +1,99 @@
 package main
 
 import (
+	"cmp"
 	"fmt"
 	"sort"
 )
 
 func main() {
-	fmt.Println(lastStoneWeightBf([]int{2, 7, 4, 1, 8, 1}))
+	fmt.Println(lastStoneWeight([]int{2, 7, 4, 1, 8, 1}))
+}
+
+type MaxHeap[T cmp.Ordered] []T
+
+func (h *MaxHeap[T]) Add(item T) {
+	*h = append(*h, item)
+	idx := len(*h) - 1
+	// 1 11 12 111 112 121 122 1111 1112
+	// 0  1  2  3    4   5   6   7    8
+	for idx > 0 {
+		parentIdx := (idx - 1) / 2 // 1,2 => 0, 3,4 => 1, 5,6 => 2, 7,8 = 3
+		if (*h)[parentIdx] >= (*h)[idx] {
+			return
+		}
+		(*h)[parentIdx], (*h)[idx] = (*h)[idx], (*h)[parentIdx]
+		idx = parentIdx
+	}
+}
+
+func (h *MaxHeap[T]) Next() T {
+	result := (*h)[0]
+
+	(*h)[0] = (*h)[len(*h)-1]
+	*h = (*h)[:len(*h)-1]
+
+	idx := 0
+	l := len(*h)
+	for idx < l {
+		leftIdx := (idx+1)*2 - 1
+		rightIdx := (idx + 1) * 2
+		largestIdx := idx
+		if leftIdx < l && (*h)[leftIdx] > (*h)[largestIdx] {
+			largestIdx = leftIdx
+		}
+		if rightIdx < l && (*h)[rightIdx] > (*h)[largestIdx] {
+			largestIdx = rightIdx
+		}
+		if largestIdx == idx {
+			break
+		}
+		(*h)[idx], (*h)[largestIdx] = (*h)[largestIdx], (*h)[idx]
+		idx = largestIdx
+	}
+
+	return result
+}
+
+func (h *MaxHeap[T]) Peek() (T, error) {
+	if len(*h) == 0 {
+		var nothing T
+		return nothing, fmt.Errorf("Can't Peek() into empty heap")
+	}
+	return (*h)[0], nil
+}
+
+func (h *MaxHeap[T]) Len() int {
+	return len(*h)
 }
 
 func lastStoneWeight(stones []int) int {
-	return lastStoneWeightBf(stones)
+	if len(stones) == 0 {
+		return 0
+	}
+	heap := new(MaxHeap[int])
+	for _, s := range stones {
+		heap.Add(s)
+	}
+	for heap.Len() > 1 {
+		fmt.Println(heap)
+		bigger := heap.Next()
+		smaller := heap.Next()
+		if bigger == smaller {
+			continue
+		}
+		heap.Add(bigger - smaller)
+	}
+
+	if heap.Len() == 0 {
+		return 0
+	} else {
+		result, err := heap.Peek()
+		if err != nil {
+			panic("shouldn't be here")
+		}
+		return result
+	}
 }
 
 func lastStoneWeightBf(stones []int) int {
