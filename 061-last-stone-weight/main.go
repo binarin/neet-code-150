@@ -2,6 +2,7 @@ package main
 
 import (
 	"cmp"
+	"container/heap"
 	"fmt"
 	"sort"
 )
@@ -67,7 +68,52 @@ func (h *MaxHeap[T]) Len() int {
 	return len(*h)
 }
 
+type MaxHeapContainer []int
+
+func (h MaxHeapContainer) Len() int           { return len(h) }
+func (h MaxHeapContainer) Less(i, j int) bool { return h[j] < h[i] }
+func (h MaxHeapContainer) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+
+func (h *MaxHeapContainer) Push(x any) {
+	*h = append(*h, x.(int))
+}
+
+func (h *MaxHeapContainer) Pop() any {
+	old := *h
+	n := len(old)
+	x := old[n-1]
+	*h = old[0 : n-1]
+	return x
+}
+
 func lastStoneWeight(stones []int) int {
+	if len(stones) == 0 {
+		return 0
+	}
+	h := new(MaxHeapContainer)
+	for _, s := range stones {
+		*h = append(*h, s)
+	}
+	heap.Init(h)
+
+	for h.Len() > 1 {
+		fmt.Println(h)
+		bigger := heap.Pop(h).(int)
+		smaller := heap.Pop(h).(int)
+		if bigger == smaller {
+			continue
+		}
+		heap.Push(h, bigger-smaller)
+	}
+
+	if h.Len() == 0 {
+		return 0
+	} else {
+		return (*h)[0]
+	}
+}
+
+func lastStoneWeightOwnHeap(stones []int) int {
 	if len(stones) == 0 {
 		return 0
 	}
