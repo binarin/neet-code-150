@@ -5,10 +5,10 @@ package main
 
 import "fmt"
 
-func alienOrder(words []string) string {
-	return ""
-}
-
 func main() {
 	fmt.Println(alienOrder([]string{"wrt", "wrf", "er", "ett", "rftt"}))
+}
+
+func alienOrder(words []string) string {
+	return ""
 }

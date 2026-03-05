@@ -5,12 +5,12 @@ package main
 
 import "fmt"
 
-func maxProfit(prices []int) int {
-	return 0
-}
-
 func main() {
 	// Example 1: prices = [1,2,3,0,2], expected output: 3
 	prices := []int{1, 2, 3, 0, 2}
 	fmt.Println(maxProfit(prices))
+}
+
+func maxProfit(prices []int) int {
+	return 0
 }

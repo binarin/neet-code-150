@@ -4,11 +4,11 @@ package main
 
 import "fmt"
 
-func findItinerary(tickets [][]string) []string {
-	return nil
-}
-
 func main() {
 	tickets := [][]string{{"MUC", "LHR"}, {"JFK", "MUC"}, {"SFO", "SJC"}, {"LHR", "SFO"}}
 	fmt.Println(findItinerary(tickets))
+}
+
+func findItinerary(tickets [][]string) []string {
+	return nil
 }

@@ -5,10 +5,10 @@ package main
 
 import "fmt"
 
-func canPartition(nums []int) bool {
-	return false
-}
-
 func main() {
 	fmt.Println(canPartition([]int{1, 5, 11, 5}))
+}
+
+func canPartition(nums []int) bool {
+	return false
 }

@@ -5,12 +5,12 @@ package main
 
 import "fmt"
 
-func mergeTriplets(triplets [][]int, target []int) bool {
-	return false
-}
-
 func main() {
 	triplets := [][]int{{2, 5, 3}, {1, 8, 4}, {1, 7, 5}}
 	target := []int{2, 7, 5}
 	fmt.Println(mergeTriplets(triplets, target))
+}
+
+func mergeTriplets(triplets [][]int, target []int) bool {
+	return false
 }

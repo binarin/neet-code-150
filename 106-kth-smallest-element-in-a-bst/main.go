@@ -11,10 +11,6 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func kthSmallest(root *TreeNode, k int) int {
-	return 0
-}
-
 func main() {
 	// Example 1: root = [3,1,4,null,2], k = 1
 	// Tree structure:
@@ -34,4 +30,8 @@ func main() {
 	k := 1
 	result := kthSmallest(root, k)
 	fmt.Println(result) // Expected: 1
+}
+
+func kthSmallest(root *TreeNode, k int) int {
+	return 0
 }

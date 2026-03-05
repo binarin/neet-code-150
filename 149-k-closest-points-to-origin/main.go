@@ -5,10 +5,6 @@ package main
 
 import "fmt"
 
-func kClosest(points [][]int, k int) [][]int {
-	return nil
-}
-
 func main() {
 	// Example 1: points = [[1,3],[-2,2]], k = 1
 	// Expected output: [[-2,2]]
@@ -16,4 +12,8 @@ func main() {
 	k := 1
 	result := kClosest(points, k)
 	fmt.Println(result)
+}
+
+func kClosest(points [][]int, k int) [][]int {
+	return nil
 }

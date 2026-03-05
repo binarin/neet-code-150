@@ -5,10 +5,10 @@ package main
 
 import "fmt"
 
-func hammingWeight(n int) int {
-	return 0
-}
-
 func main() {
 	fmt.Println(hammingWeight(11))
+}
+
+func hammingWeight(n int) int {
+	return 0
 }

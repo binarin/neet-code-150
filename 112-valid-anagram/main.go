@@ -5,10 +5,10 @@ package main
 
 import "fmt"
 
-func isAnagram(s string, t string) bool {
-	return false
-}
-
 func main() {
 	fmt.Println(isAnagram("anagram", "nagaram"))
+}
+
+func isAnagram(s string, t string) bool {
+	return false
 }

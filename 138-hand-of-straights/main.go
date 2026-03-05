@@ -5,12 +5,12 @@ package main
 
 import "fmt"
 
-func isNStraightHand(hand []int, groupSize int) bool {
-	return false
-}
-
 func main() {
 	// Example 1: hand = [1,2,3,6,2,3,4,7,8], groupSize = 3, expected: true
 	result := isNStraightHand([]int{1, 2, 3, 6, 2, 3, 4, 7, 8}, 3)
 	fmt.Println(result)
+}
+
+func isNStraightHand(hand []int, groupSize int) bool {
+	return false
 }

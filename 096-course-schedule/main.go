@@ -5,12 +5,12 @@ package main
 
 import "fmt"
 
-func canFinish(numCourses int, prerequisites [][]int) bool {
-	return false
-}
-
 func main() {
 	numCourses := 2
 	prerequisites := [][]int{{1, 0}}
 	fmt.Println(canFinish(numCourses, prerequisites))
+}
+
+func canFinish(numCourses int, prerequisites [][]int) bool {
+	return false
 }

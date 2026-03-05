@@ -5,10 +5,6 @@ package main
 
 import "fmt"
 
-func numIslands(grid [][]byte) int {
-	return 0
-}
-
 func main() {
 	grid := [][]byte{
 		{'1', '1', '1', '1', '0'},
@@ -17,4 +13,8 @@ func main() {
 		{'0', '0', '0', '0', '0'},
 	}
 	fmt.Println(numIslands(grid))
+}
+
+func numIslands(grid [][]byte) int {
+	return 0
 }

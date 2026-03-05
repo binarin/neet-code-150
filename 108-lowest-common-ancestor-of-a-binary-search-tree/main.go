@@ -11,10 +11,6 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
-	return nil
-}
-
 func main() {
 	// Example 1: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8
 	// Expected output: 6
@@ -34,4 +30,8 @@ func main() {
 	} else {
 		fmt.Println("nil")
 	}
+}
+
+func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+	return nil
 }

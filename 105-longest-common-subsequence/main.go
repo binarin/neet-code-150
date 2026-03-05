@@ -5,10 +5,10 @@ package main
 
 import "fmt"
 
-func longestCommonSubsequence(text1 string, text2 string) int {
-	return 0
-}
-
 func main() {
 	fmt.Println(longestCommonSubsequence("abcde", "ace"))
+}
+
+func longestCommonSubsequence(text1 string, text2 string) int {
+	return 0
 }

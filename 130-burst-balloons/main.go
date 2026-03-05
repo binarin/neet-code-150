@@ -5,10 +5,10 @@ package main
 
 import "fmt"
 
-func maxCoins(nums []int) int {
-	return 0
-}
-
 func main() {
 	fmt.Println(maxCoins([]int{3, 1, 5, 8}))
+}
+
+func maxCoins(nums []int) int {
+	return 0
 }

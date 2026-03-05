@@ -5,11 +5,11 @@ package main
 
 import "fmt"
 
-func characterReplacement(s string, k int) int {
-	return 0
-}
-
 func main() {
 	// Example 1: s = "ABAB", k = 2, Output: 4
 	fmt.Println(characterReplacement("ABAB", 2))
+}
+
+func characterReplacement(s string, k int) int {
+	return 0
 }

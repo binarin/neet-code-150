@@ -5,11 +5,11 @@ package main
 
 import "fmt"
 
-func countBits(n int) []int {
-	return nil
-}
-
 func main() {
 	// Example 1: n = 2 -> [0,1,1]
 	fmt.Println(countBits(2))
+}
+
+func countBits(n int) []int {
+	return nil
 }

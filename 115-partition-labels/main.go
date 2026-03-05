@@ -5,10 +5,10 @@ package main
 
 import "fmt"
 
-func partitionLabels(s string) []int {
-	return nil
-}
-
 func main() {
 	fmt.Println(partitionLabels("ababcbacadefegdehijhklij"))
+}
+
+func partitionLabels(s string) []int {
+	return nil
 }

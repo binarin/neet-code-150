@@ -5,9 +5,6 @@ package main
 
 import "fmt"
 
-func wallsAndGates(rooms [][]int) {
-}
-
 func main() {
 	rooms := [][]int{
 		{2147483647, -1, 0, 2147483647},
@@ -17,4 +14,7 @@ func main() {
 	}
 	wallsAndGates(rooms)
 	fmt.Println(rooms)
+}
+
+func wallsAndGates(rooms [][]int) {
 }

@@ -5,10 +5,10 @@ package main
 
 import "fmt"
 
-func isHappy(n int) bool {
-	return false
-}
-
 func main() {
 	fmt.Println(isHappy(19))
+}
+
+func isHappy(n int) bool {
+	return false
 }

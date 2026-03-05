@@ -11,10 +11,6 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func invertTree(root *TreeNode) *TreeNode {
-	return nil
-}
-
 func main() {
 	// Example 1: root = [4,2,7,1,3,6,9]
 	//        4
@@ -37,4 +33,8 @@ func main() {
 	}
 	result := invertTree(root)
 	fmt.Println(result) // Expected: [4,7,2,9,6,3,1]
+}
+
+func invertTree(root *TreeNode) *TreeNode {
+	return nil
 }

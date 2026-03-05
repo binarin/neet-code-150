@@ -11,10 +11,6 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func rightSideView(root *TreeNode) []int {
-	return nil
-}
-
 func main() {
 	// Example 1: root = [1,2,3,null,5,null,4]
 	//       1
@@ -34,4 +30,8 @@ func main() {
 		},
 	}
 	fmt.Println(rightSideView(root)) // Expected: [1,3,4]
+}
+
+func rightSideView(root *TreeNode) []int {
+	return nil
 }

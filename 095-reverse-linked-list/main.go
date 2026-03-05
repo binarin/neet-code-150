@@ -10,10 +10,6 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func reverseList(head *ListNode) *ListNode {
-	return nil
-}
-
 func buildList(vals []int) *ListNode {
 	if len(vals) == 0 {
 		return nil
@@ -41,4 +37,8 @@ func main() {
 	head := buildList([]int{1, 2, 3, 4, 5})
 	result := reverseList(head)
 	fmt.Println(listToSlice(result))
+}
+
+func reverseList(head *ListNode) *ListNode {
+	return nil
 }
