@@ -3,10 +3,20 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func maxProfit(prices []int) int {
-	return 0
+	minPrice := math.MaxInt
+	best := 0
+	for _, price := range prices {
+		thisProfit := price - minPrice
+		best = max(best, thisProfit)
+		minPrice = min(minPrice, price)
+	}
+	return best
 }
 
 func main() {
