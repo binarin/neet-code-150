@@ -27,6 +27,12 @@ func TestLeastInterval(t *testing.T) {
 			n:        3,
 			expected: 10,
 		},
+		{
+			name:     "Example 4: tasks = [B,C,D,A,A,A,A,G], n = 1",
+			tasks:    []byte{'B', 'C', 'D', 'A', 'A', 'A', 'A', 'G'},
+			n:        1,
+			expected: 8,
+		},
 	}
 
 	for _, tt := range tests {
