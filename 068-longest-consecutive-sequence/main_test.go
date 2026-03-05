@@ -27,7 +27,7 @@ func Test_longestConsecutive(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := longestConsecutive(tt.nums); got != tt.want {
-				t.Errorf("longestConsecutive() = %v, want %v", got, tt.want)
+				t.Errorf("longestConsecutive(%v) = %v, want %v", tt.nums, got, tt.want)
 			}
 		})
 	}
