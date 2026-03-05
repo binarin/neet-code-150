@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/rotting-oranges/
+// Difficulty: Medium
 package main
 
 import (

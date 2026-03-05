@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/same-tree/
+// Difficulty: Easy
 package main
 
 import (

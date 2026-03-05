@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/word-search/
+// Difficulty: Medium
 package main
 
 import (

@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/word-ladder/
+// Difficulty: Hard
 package main
 
 import (

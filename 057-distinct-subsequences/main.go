@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/distinct-subsequences/
+// Difficulty: Hard
 package main
 
 import (

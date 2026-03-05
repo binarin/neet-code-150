@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/maximum-depth-of-binary-tree/
+// Difficulty: Easy
 package main
 
 import (

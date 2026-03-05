@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/jump-game-ii/
+// Difficulty: Medium
 package main
 
 import (

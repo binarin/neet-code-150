@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/detect-squares/
+// Difficulty: Medium
 package main
 
 import "fmt"

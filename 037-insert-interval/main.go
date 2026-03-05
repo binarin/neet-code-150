@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/insert-interval/
+// Difficulty: Medium
 package main
 
 import (

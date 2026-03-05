@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/last-stone-weight/
+// Difficulty: Easy
 package main
 
 import (

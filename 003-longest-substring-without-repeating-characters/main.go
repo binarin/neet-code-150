@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/longest-substring-without-repeating-characters/
+// Difficulty: Medium
 package main
 
 import "fmt"

@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/multiply-strings/
+// Difficulty: Medium
 package main
 
 import (

@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/count-good-nodes-in-binary-tree/
+// Difficulty: Medium
 package main
 
 import (

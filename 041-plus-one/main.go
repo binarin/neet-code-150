@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/plus-one/
+// Difficulty: Easy
 package main
 
 import "fmt"

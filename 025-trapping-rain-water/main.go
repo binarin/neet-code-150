@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/trapping-rain-water/
+// Difficulty: Hard
 package main
 
 import (

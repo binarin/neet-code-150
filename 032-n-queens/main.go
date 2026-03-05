@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/n-queens/
+// Difficulty: Hard
 package main
 
 import (

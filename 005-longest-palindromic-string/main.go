@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/longest-palindromic-substring/
+// Difficulty: Medium
 package main
 
 import (

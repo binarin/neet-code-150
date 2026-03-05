@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/valid-sudoku/
+// Difficulty: Medium
 package main
 
 import (

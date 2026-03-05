@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/climbing-stairs/
+// Difficulty: Easy
 package main
 
 import "fmt"

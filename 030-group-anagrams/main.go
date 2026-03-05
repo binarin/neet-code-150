@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/group-anagrams/
+// Difficulty: Medium
 package main
 
 import (

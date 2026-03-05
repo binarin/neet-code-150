@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/merge-intervals/
+// Difficulty: Medium
 package main
 
 import (

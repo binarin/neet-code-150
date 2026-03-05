@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/diameter-of-binary-tree/
+// Difficulty: Easy
 package main
 
 import (

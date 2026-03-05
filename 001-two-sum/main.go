@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/two-sum/
+// Difficulty: Easy
 package main
 
 import "fmt"

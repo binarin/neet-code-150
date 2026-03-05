@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/decode-ways/
+// Difficulty: Medium
 package main
 
 import (

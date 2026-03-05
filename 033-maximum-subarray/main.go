@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/maximum-subarray/
+// Difficulty: Medium
 package main
 
 import (

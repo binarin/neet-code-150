@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/powx-n/
+// Difficulty: Medium
 package main
 
 import (
