@@ -38,7 +38,7 @@ func TestAddSlices(t *testing.T) {
 	assert.Equal(t, []byte{3, 2, 1}, addSlices([]byte{0}, []byte{3, 2, 1}))
 
 	// empty slices
-	assert.Equal(t, []byte{}, addSlices([]byte{}, []byte{}))
+	assert.Empty(t, addSlices([]byte{}, []byte{}))
 }
 
 func TestMul1(t *testing.T) {
@@ -67,5 +67,5 @@ func TestMul1(t *testing.T) {
 	assert.Equal(t, []byte{3, 2, 1}, mul1([]byte{3, 2, 1}, 1))
 
 	// empty slice
-	assert.Equal(t, []byte{}, mul1([]byte{}, 5))
+	assert.Empty(t, mul1([]byte{}, 5))
 }

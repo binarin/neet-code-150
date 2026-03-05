@@ -25,5 +25,5 @@ func TestLevelOrder(t *testing.T) {
 
 	// Example 3: root = [] -> []
 	var root3 *TreeNode = nil
-	assert.Equal(t, [][]int{}, levelOrder(root3))
+	assert.Empty(t, levelOrder(root3))
 }
