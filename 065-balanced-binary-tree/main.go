@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/balanced-binary-tree/
+// Difficulty: Easy
+
 package main
 
 import "fmt"

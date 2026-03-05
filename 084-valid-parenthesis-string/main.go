@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/valid-parenthesis-string/
+// Difficulty: Medium
+
 package main
 
 import "fmt"

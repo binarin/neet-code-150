@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/redundant-connection/
+// Difficulty: Medium
+
 package main
 
 import "fmt"

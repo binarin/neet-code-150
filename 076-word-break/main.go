@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/word-break/
+// Difficulty: Medium
+
 package main
 
 import "fmt"

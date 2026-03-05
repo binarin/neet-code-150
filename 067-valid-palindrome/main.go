@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/valid-palindrome/
+// Difficulty: Easy
+
 package main
 
 import "fmt"

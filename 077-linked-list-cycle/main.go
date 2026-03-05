@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/linked-list-cycle/
+// Difficulty: Easy
+
 package main
 
 import "fmt"

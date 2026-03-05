@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/max-area-of-island/
+// Difficulty: Medium
+
 package main
 
 import "fmt"

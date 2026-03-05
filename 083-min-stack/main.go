@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/min-stack/
+// Difficulty: Medium
+
 package main
 
 import "fmt"

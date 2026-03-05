@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/lru-cache/
+// Difficulty: Medium
+
 package main
 
 import "fmt"

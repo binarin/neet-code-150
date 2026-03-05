@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/reorder-list/
+// Difficulty: Medium
+
 package main
 
 import "fmt"

@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/longest-consecutive-sequence/
+// Difficulty: Medium
+
 package main
 
 import "fmt"

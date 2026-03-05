@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+// Difficulty: Easy
+
 package main
 
 import "fmt"

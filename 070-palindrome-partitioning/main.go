@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/palindrome-partitioning/
+// Difficulty: Medium
+
 package main
 
 import "fmt"

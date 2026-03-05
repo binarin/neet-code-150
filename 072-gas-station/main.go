@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/gas-station/
+// Difficulty: Medium
+
 package main
 
 import "fmt"

@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/min-cost-to-connect-all-points/
+// Difficulty: Medium
+
 package main
 
 import "fmt"

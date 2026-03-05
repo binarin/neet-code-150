@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/palindromic-substrings/
+// Difficulty: Medium
+
 package main
 
 import "fmt"

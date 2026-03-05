@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/copy-list-with-random-pointer/
+// Difficulty: Medium
+
 package main
 
 import "fmt"

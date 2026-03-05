@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/clone-graph/
+// Difficulty: Medium
+
 package main
 
 import "fmt"

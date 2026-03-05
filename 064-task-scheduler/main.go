@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/task-scheduler/
+// Difficulty: Medium
+
 package main
 
 import "fmt"

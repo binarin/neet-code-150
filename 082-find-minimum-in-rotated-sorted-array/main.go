@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+// Difficulty: Medium
+
 package main
 
 import "fmt"
