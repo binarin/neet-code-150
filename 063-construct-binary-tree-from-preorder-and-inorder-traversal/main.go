@@ -13,7 +13,8 @@ type TreeNode struct {
 func main() {
 	// Example 1: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
 	// Output: [3,9,20,null,null,15,7]
-	result := buildTree([]int{3, 9, 20, 15, 7}, []int{9, 3, 15, 20, 7})
+	// result := buildTree([]int{3, 9, 20, 15, 7}, []int{9, 3, 15, 20, 7})
+	result := buildTree([]int{1, 2}, []int{1, 2})
 	printTree(result)
 }
 
@@ -41,16 +42,27 @@ func buildTree(preorder []int, inorder []int) *TreeNode {
 	if len(preorder) == 0 {
 		return nil
 	}
-	current := preorder[0]
-	leftNo := 0
-	for inorder[leftNo] != current {
-		leftNo++
+	lookup := map[int]int{}
+	for idx, val := range inorder {
+		lookup[val] = idx
 	}
 
-	root := new(TreeNode)
-	root.Val = current
-	root.Left = buildTree(preorder[1:leftNo+1], inorder[0:leftNo])
-	root.Right = buildTree(preorder[leftNo+1:], inorder[leftNo+1:])
+	type sl [2]int
+	var recur func(sl, sl) *TreeNode
+	recur = func(pre, in sl) *TreeNode {
+		if pre[1] == 0 {
+			return nil
+		}
+		current := preorder[pre[0]]
+		leftIdxAbs := lookup[current]
+		leftNo := leftIdxAbs - in[0]
+		// fmt.Printf("%3d %3d %3d %3d %3d\n", pre, in, current, leftIdxAbs, leftNo)
+		node := new(TreeNode)
+		node.Val = current
+		node.Left = recur(sl{pre[0] + 1, leftNo}, sl{in[0], leftNo})
+		node.Right = recur(sl{pre[0] + leftNo + 1, pre[1] - leftNo - 1}, sl{in[0] + leftNo + 1, in[1] - leftNo - 1})
+		return node
+	}
 
-	return root
+	return recur(sl{0, len(preorder)}, sl{0, len(inorder)})
 }
