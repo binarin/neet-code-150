@@ -3,7 +3,9 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type TreeNode struct {
 	Val   int
@@ -12,7 +14,33 @@ type TreeNode struct {
 }
 
 func isBalanced(root *TreeNode) bool {
-	return false
+	abs := func(a int) int {
+		if a < 0 {
+			return -a
+		} else {
+			return a
+		}
+	}
+	var recur func(*TreeNode) (int, bool)
+	recur = func(node *TreeNode) (int, bool) {
+		if node == nil {
+			return 0, true
+		}
+		lDepth, lOk := recur(node.Left)
+		if !lOk {
+			return 0, false
+		}
+		rDepth, rOk := recur(node.Right)
+		if !rOk {
+			return 0, false
+		}
+		if abs(lDepth-rDepth) > 1 {
+			return 0, false
+		}
+		return 1 + max(lDepth, rDepth), true
+	}
+	_, balanced := recur(root)
+	return balanced
 }
 
 // buildTree builds a binary tree from a level-order slice representation
