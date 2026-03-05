@@ -38,5 +38,19 @@ func printTree(root *TreeNode) {
 }
 
 func buildTree(preorder []int, inorder []int) *TreeNode {
-	return nil
+	if len(preorder) == 0 {
+		return nil
+	}
+	current := preorder[0]
+	leftNo := 0
+	for inorder[leftNo] != current {
+		leftNo++
+	}
+
+	root := new(TreeNode)
+	root.Val = current
+	root.Left = buildTree(preorder[1:leftNo+1], inorder[0:leftNo])
+	root.Right = buildTree(preorder[leftNo+1:], inorder[leftNo+1:])
+
+	return root
 }
