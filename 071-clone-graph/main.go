@@ -12,7 +12,33 @@ type Node struct {
 }
 
 func cloneGraph(node *Node) *Node {
-	return nil
+	newNodes := map[*Node]*Node{}
+	ensure := func(oldNode *Node) *Node {
+		if n, ok := newNodes[oldNode]; ok {
+			return n
+		}
+		newNodes[oldNode] = &Node{Val: oldNode.Val}
+		return newNodes[oldNode]
+	}
+	queue := []*Node{node}
+	visited := map[*Node]bool{node: true}
+
+	for len(queue) > 0 {
+		cur := queue[0]
+		fmt.Println(cur)
+		queue = queue[1:]
+		newNode := ensure(cur)
+		for _, neighbor := range cur.Neighbors {
+			if _, ok := visited[neighbor]; !ok {
+				queue = append(queue, neighbor)
+				visited[neighbor] = true
+			}
+			newNeighbor := ensure(neighbor)
+			newNode.Neighbors = append(newNode.Neighbors, newNeighbor)
+		}
+	}
+
+	return newNodes[node]
 }
 
 func main() {
