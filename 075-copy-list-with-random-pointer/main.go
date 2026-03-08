@@ -12,7 +12,21 @@ type Node struct {
 }
 
 func copyRandomList(head *Node) *Node {
-	return nil
+	newCons := map[*Node]*Node{}
+	var ensure func(*Node) *Node
+	ensure = func(n *Node) *Node {
+		if n == nil {
+			return nil
+		}
+		if cons, ok := newCons[n]; ok {
+			return cons
+		}
+		newCons[n] = &Node{Val: n.Val}
+		newCons[n].Next = ensure(n.Next)
+		newCons[n].Random = ensure(n.Random)
+		return newCons[n]
+	}
+	return ensure(head)
 }
 
 // buildList creates a linked list from a slice of [val, randomIndex] pairs
