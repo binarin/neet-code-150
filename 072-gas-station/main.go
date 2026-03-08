@@ -3,9 +3,30 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func canCompleteCircuit(gas []int, cost []int) int {
+	surplus, minSurplus := 0, math.MaxInt
+	for i := range gas {
+		surplus += gas[i] - cost[i]
+		minSurplus = min(minSurplus, surplus)
+	}
+	if surplus < 0 {
+		return -1
+	}
+	for i := range gas {
+		if minSurplus >= 0 {
+			return i
+		}
+		minSurplus -= gas[i] - cost[i]
+	}
+	return -1
+}
+
+func canCompleteCircuitBf(gas []int, cost []int) int {
 outer:
 	for start := range gas {
 		surplus := 0
