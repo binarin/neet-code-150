@@ -6,7 +6,11 @@ package main
 import "fmt"
 
 func singleNumber(nums []int) int {
-	return 0
+	result := 0
+	for _, num := range nums {
+		result ^= num
+	}
+	return result
 }
 
 func main() {
