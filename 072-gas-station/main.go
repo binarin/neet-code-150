@@ -6,7 +6,20 @@ package main
 import "fmt"
 
 func canCompleteCircuit(gas []int, cost []int) int {
-	return 0
+outer:
+	for start := range gas {
+		surplus := 0
+		for cur := range gas {
+			cur = (start + cur) % len(gas)
+			surplus += gas[cur]
+			surplus -= cost[cur]
+			if surplus < 0 {
+				continue outer
+			}
+		}
+		return start
+	}
+	return -1
 }
 
 func main() {
