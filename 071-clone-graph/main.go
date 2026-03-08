@@ -12,6 +12,9 @@ type Node struct {
 }
 
 func cloneGraph(node *Node) *Node {
+	if node == nil {
+		return nil
+	}
 	newNodes := map[*Node]*Node{}
 	ensure := func(oldNode *Node) *Node {
 		if n, ok := newNodes[oldNode]; ok {
