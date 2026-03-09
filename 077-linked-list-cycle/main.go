@@ -11,6 +11,22 @@ type ListNode struct {
 }
 
 func hasCycle(head *ListNode) bool {
+	if head == nil {
+		return false
+	}
+	rabbit, hare := head, head
+	for {
+		for range 2 {
+			rabbit = rabbit.Next
+			if rabbit == nil {
+				return false
+			}
+			if rabbit == hare {
+				return true
+			}
+		}
+		hare = hare.Next
+	}
 	return false
 }
 
