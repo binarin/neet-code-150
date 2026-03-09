@@ -11,7 +11,61 @@ type ListNode struct {
 	Next *ListNode
 }
 
+func listLen(n *ListNode) int {
+	length := 0
+	for n != nil {
+		length++
+		n = n.Next
+	}
+	return length
+}
+
+func nReverse(n **ListNode) {
+	var prev, cur *ListNode = nil, *n
+	if cur == nil {
+		return
+	}
+	if cur.Next == nil {
+		return
+	}
+	for cur != nil {
+		// fmt.Println("b", prev, cur)
+		cur.Next, prev, cur = prev, cur, cur.Next
+		// fmt.Println("a", prev, cur)
+	}
+	*n = prev
+}
+
+func drop(n *ListNode, count int) *ListNode {
+	for n != nil && count > 0 {
+		n = n.Next
+		count--
+	}
+	return n
+}
+
 func reorderList(head *ListNode) {
+	l := listLen(head)
+	if l == 0 || l == 1 {
+		return
+	}
+	snd := drop(head, l/2)
+	// fmt.Println(l, listToSlice(snd))
+	nReverse(&snd)
+	// fmt.Println(listToSlice(snd))
+	for {
+		// fmt.Println("b", head, snd)
+		if snd == nil || head.Next == snd || head == snd {
+			break
+		}
+		// (1)->(2)->(3->nil)<-(4)<-(5)
+		// ^1   ^2  ^3^3  ^2  ^1
+		//
+		// (1)->(2)->(3->nil)<-(4)
+		//  ^1  2^    2^       1^
+		//
+		head.Next, snd.Next, head, snd = snd, head.Next, head.Next, snd.Next
+	}
 }
 
 // Helper function to create a linked list from a slice
