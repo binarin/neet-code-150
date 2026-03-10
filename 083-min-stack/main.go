@@ -3,27 +3,36 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 type MinStack struct {
+	Stack [][2]int
+	Min   int
 }
 
 func Constructor() MinStack {
-	return MinStack{}
+	return MinStack{Min: math.MaxInt}
 }
 
 func (this *MinStack) Push(val int) {
+	this.Stack = append(this.Stack, [2]int{val, this.Min})
+	this.Min = min(this.Min, val)
 }
 
 func (this *MinStack) Pop() {
+	this.Min = this.Stack[len(this.Stack)-1][1]
+	this.Stack = this.Stack[0 : len(this.Stack)-1]
 }
 
 func (this *MinStack) Top() int {
-	return 0
+	return this.Stack[len(this.Stack)-1][0]
 }
 
 func (this *MinStack) GetMin() int {
-	return 0
+	return this.Min
 }
 
 func main() {
