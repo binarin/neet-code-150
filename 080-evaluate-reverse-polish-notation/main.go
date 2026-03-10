@@ -3,10 +3,36 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func evalRPN(tokens []string) int {
-	return 0
+	stack := []int{}
+	for _, tok := range tokens {
+		if num, err := strconv.Atoi(tok); err == nil {
+			stack = append(stack, num)
+			continue
+		}
+
+		var result int
+		op1, op2 := stack[len(stack)-2], stack[len(stack)-1]
+
+		switch tok {
+		case "+":
+			result = op1 + op2
+		case "-":
+			result = op1 - op2
+		case "*":
+			result = op1 * op2
+		case "/":
+			result = op1 / op2
+		}
+		stack = stack[:len(stack)-2]
+		stack = append(stack, result)
+	}
+	return stack[len(stack)-1]
 }
 
 func main() {
