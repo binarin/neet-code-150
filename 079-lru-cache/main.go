@@ -3,21 +3,12 @@
 
 package main
 
-import "fmt"
-
-type LRUCache struct {
-}
-
-func Constructor(capacity int) LRUCache {
-	return LRUCache{}
-}
-
-func (this *LRUCache) Get(key int) int {
-	return 0
-}
-
-func (this *LRUCache) Put(key int, value int) {
-}
+import (
+	"fmt"
+	"maps"
+	"slices"
+	"strings"
+)
 
 /**
  * Your LRUCache object will be instantiated and called as such:
@@ -33,13 +24,89 @@ func main() {
 	// Output: [null, null, null, 1, null, -1, null, -1, 3, 4]
 
 	lRUCache := Constructor(2)
-	lRUCache.Put(1, 1)       // cache is {1=1}
-	lRUCache.Put(2, 2)       // cache is {1=1, 2=2}
-	fmt.Println(lRUCache.Get(1)) // return 1
-	lRUCache.Put(3, 3)       // LRU key was 2, evicts key 2, cache is {1=1, 3=3}
-	fmt.Println(lRUCache.Get(2)) // returns -1 (not found)
-	lRUCache.Put(4, 4)       // LRU key was 1, evicts key 1, cache is {4=4, 3=3}
-	fmt.Println(lRUCache.Get(1)) // return -1 (not found)
-	fmt.Println(lRUCache.Get(3)) // return 3
-	fmt.Println(lRUCache.Get(4)) // return 4
+	fmt.Println("constr 2", lRUCache)
+	lRUCache.Put(1, 1) // cache is {1=1}
+	fmt.Println("put 1", lRUCache)
+	lRUCache.Put(2, 2) // cache is {1=1, 2=2}
+	fmt.Println("put 2", lRUCache)
+	fmt.Println("get 1(exp 1)", lRUCache.Get(1), lRUCache)
+	lRUCache.Put(3, 3)
+	fmt.Println("put 3(2 evicted, 1,3 left)", lRUCache)
+	lRUCache.Put(4, 4)
+	fmt.Println("put 4(1 evicted, 3,4 left)", lRUCache)
+	fmt.Println("get 1(exp -1)", lRUCache.Get(1), lRUCache)
+	fmt.Println("get 1(exp 3)", lRUCache.Get(3), lRUCache)
+	fmt.Println("get 1(exp 4)", lRUCache.Get(4), lRUCache)
+}
+
+type LRUCache struct {
+	Capacity int
+	Values   map[int]int
+	RingMap  map[int]*DLNode
+	Ring     *DLNode
+}
+
+type DLNode struct {
+	Key        int
+	Prev, Next *DLNode
+}
+
+func Constructor(capacity int) LRUCache {
+	cache := LRUCache{Capacity: capacity}
+	cache.Ring = &DLNode{}
+	cache.Ring.Prev, cache.Ring.Next = cache.Ring, cache.Ring
+	cache.Values = map[int]int{}
+	cache.RingMap = map[int]*DLNode{}
+	return cache
+}
+
+func (c *LRUCache) EnsureUnlinked(key int) *DLNode {
+	if n, ok := c.RingMap[key]; ok {
+		n.Prev.Next, n.Next.Prev = n.Next, n.Prev
+		n.Next, n.Prev = nil, nil
+		return n
+	} else {
+		n := &DLNode{Key: key}
+		c.RingMap[key] = n
+		return n
+	}
+}
+
+func (c *LRUCache) TrackUsage(key int) {
+	n := c.EnsureUnlinked(key)
+	c.Ring.Prev.Next, c.Ring.Prev, n.Prev, n.Next = n, n, c.Ring.Prev, c.Ring
+}
+
+func (c LRUCache) String() string {
+	b := strings.Builder{}
+	fmt.Fprintf(&b, "\n[\tusage: %d/%d\n\tcache: ", len(c.Values), c.Capacity)
+	for idx, key := range slices.Sorted(maps.Keys(c.Values)) {
+		if idx != 0 {
+			b.WriteString(", ")
+		}
+		fmt.Fprintf(&b, "%d=%d", key, c.Values[key])
+	}
+	fmt.Fprintf(&b, "\n\tMRU: %d, LRU: %d", c.Ring.Prev.Key, c.Ring.Next.Key)
+	b.WriteString("\n]")
+
+	return b.String()
+}
+
+func (c *LRUCache) Get(key int) int {
+	val, ok := c.Values[key]
+	if !ok {
+		return -1
+	}
+	c.TrackUsage(key)
+	return val
+}
+
+func (c *LRUCache) Put(key int, value int) {
+	if _, ok := c.Values[key]; !ok && len(c.Values) == c.Capacity {
+		n := c.EnsureUnlinked(c.Ring.Next.Key)
+		delete(c.Values, n.Key)
+		delete(c.RingMap, n.Key)
+	}
+	c.TrackUsage(key)
+	c.Values[key] = value
 }
